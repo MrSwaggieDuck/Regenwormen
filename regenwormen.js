@@ -50,8 +50,11 @@ function SelectOut (n) {
 }
 
 function calculate_throws (n, k) {
-	let result = []
+	let result = [];
 
+	if (k == 0) {
+		return [[]];
+	}
 	if (k == 1) {
 		return [[1], [2], [3], [4], [5], [6]];
 	} else {
@@ -153,7 +156,7 @@ function calculate_roll (start, calculate_take=false, roll=null) {
 		expected_values[s] = worm_value(s);
 	})	
 
-	for (let t = 7; t > 0; t--) {
+	for (let t = 7; t >= 0; t--) {
 		possible_states = calculate_throws(6, t)
 		possible_throws = calculate_throws(6, 8-t)
 		// For every state check for every throw the chance and expected value after throw
@@ -166,37 +169,39 @@ function calculate_roll (start, calculate_take=false, roll=null) {
 			}
 			let expected_value_roll = 0
 			// For every throw calculate chance and expected value for best take
-			for (let t of possible_throws) {
-				chance = prob_of_throw(t)
+			for (let thr of possible_throws) {
+				chance = prob_of_throw(thr)
 				let best_take = 0;
 				let best_worm_value = -losing_value;
 				
 				// For every take calculate the new state and expected_value
 				for (let take = 1; take < 7; take++) {
-					if (state.includes(take) || !t.includes(take)) {
+					if (state.includes(take) || !thr.includes(take)) {
 						continue
 					} else {
-						let state_after_take = merge_states(state, t.filter(x => x == take));
+						let state_after_take = merge_states(state, thr.filter(x => x == take));
 						if (expected_values[state_after_take] > best_worm_value) {
 							best_take = take
 							best_worm_value = expected_values[state_after_take]
 						}
 					}
 				}
+				
 				expected_value_roll += chance*best_worm_value
-				if (calculate_take && state_to_string(state) == start_string && state_to_string(t) == start_roll_string) {
+				if (calculate_take && state_to_string(state) == start_string && state_to_string(thr) == start_roll_string) {
 					if (best_take == 0) {
 						document.getElementById("take-result").textContent = "Dead";
 					} else {
 						document.getElementById("take-result").textContent = "Take " + best_take;
 					}
+					return;
 				}
 				
 			}
 			if (state_to_string(state) == start_string) {
-				console.log(expected_value_take, expected_value_roll)
+				
 				if (expected_value_take >= expected_value_roll) {
-					document.getElementById("roll-result").textContent = "Stop";
+					document.getElementById("roll-result").textContent = "Stop: " + expected_value_take;
 				} else {
 					document.getElementById("roll-result").textContent = "Roll: " + expected_value_roll;
 				}
