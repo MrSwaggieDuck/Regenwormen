@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Regenwormen Strategie</title>
+		<link rel="stylesheet" href="style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+	</head>
+	<body>
+		<section id="free-tiles">
+			<div onclick="SelectFree(21)" id="free21" class="tile selected">21</div>
+			<div onclick="SelectFree(22)" id="free22" class="tile selected">22</div>
+			<div onclick="SelectFree(23)" id="free23" class="tile selected">23</div>
+			<div onclick="SelectFree(24)" id="free24" class="tile selected">24</div>
+			<div onclick="SelectFree(25)" id="free25" class="tile selected">25</div>
+			<div onclick="SelectFree(26)" id="free26" class="tile selected">26</div>
+			<div onclick="SelectFree(27)" id="free27" class="tile selected">27</div>
+			<div onclick="SelectFree(28)" id="free28" class="tile selected">28</div>
+			<div onclick="SelectFree(29)" id="free29" class="tile selected">29</div>
+			<div onclick="SelectFree(30)" id="free30" class="tile selected">30</div>
+			<div onclick="SelectFree(31)" id="free31" class="tile selected">31</div>
+			<div onclick="SelectFree(32)" id="free32" class="tile selected">32</div>
+			<div onclick="SelectFree(33)" id="free33" class="tile selected">33</div>
+			<div onclick="SelectFree(34)" id="free34" class="tile selected">34</div>
+			<div onclick="SelectFree(35)" id="free35" class="tile selected">35</div>
+			<div onclick="SelectFree(36)" id="free36" class="tile selected">36</div>
+		</section>
+		<section id="enemy-tiles">
+			<div onclick="SelectEnemy(21)" id="enemy21" class="tile">21</div>
+			<div onclick="SelectEnemy(22)" id="enemy22" class="tile">22</div>
+			<div onclick="SelectEnemy(23)" id="enemy23" class="tile">23</div>
+			<div onclick="SelectEnemy(24)" id="enemy24" class="tile">24</div>
+			<div onclick="SelectEnemy(25)" id="enemy25" class="tile">25</div>
+			<div onclick="SelectEnemy(26)" id="enemy26" class="tile">26</div>
+			<div onclick="SelectEnemy(27)" id="enemy27" class="tile">27</div>
+			<div onclick="SelectEnemy(28)" id="enemy28" class="tile">28</div>
+			<div onclick="SelectEnemy(29)" id="enemy29" class="tile">29</div>
+			<div onclick="SelectEnemy(30)" id="enemy30" class="tile">30</div>
+			<div onclick="SelectEnemy(31)" id="enemy31" class="tile">31</div>
+			<div onclick="SelectEnemy(32)" id="enemy32" class="tile">32</div>
+			<div onclick="SelectEnemy(33)" id="enemy33" class="tile">33</div>
+			<div onclick="SelectEnemy(34)" id="enemy34" class="tile">34</div>
+			<div onclick="SelectEnemy(35)" id="enemy35" class="tile">35</div>
+			<div onclick="SelectEnemy(36)" id="enemy36" class="tile">36</div>
+		</section>
+		<section id="out-tiles">
+			<div onclick="SelectOut(21)" id="out21" class="tile">21</div>
+			<div onclick="SelectOut(22)" id="out22" class="tile">22</div>
+			<div onclick="SelectOut(23)" id="out23" class="tile">23</div>
+			<div onclick="SelectOut(24)" id="out24" class="tile">24</div>
+			<div onclick="SelectOut(25)" id="out25" class="tile">25</div>
+			<div onclick="SelectOut(26)" id="out26" class="tile">26</div>
+			<div onclick="SelectOut(27)" id="out27" class="tile">27</div>
+			<div onclick="SelectOut(28)" id="out28" class="tile">28</div>
+			<div onclick="SelectOut(29)" id="out29" class="tile">29</div>
+			<div onclick="SelectOut(30)" id="out30" class="tile">30</div>
+			<div onclick="SelectOut(31)" id="out31" class="tile">31</div>
+			<div onclick="SelectOut(32)" id="out32" class="tile">32</div>
+			<div onclick="SelectOut(33)" id="out33" class="tile">33</div>
+			<div onclick="SelectOut(34)" id="out34" class="tile">34</div>
+			<div onclick="SelectOut(35)" id="out35" class="tile">35</div>
+			<div onclick="SelectOut(36)" id="out36" class="tile">36</div>
+		</section>
+		<div id="players">
+			<p>How many players are in the game?</p>
+			<input id="player-count">
+			<p>Tile to lose?</p>
+			<input id="losing-tile">
+		</div>
+		<div id="roll">
+			<p>Should you roll?</p>
+			<input id="state-input">
+			<button onclick="StartRollCalculations()">Calculate</button>
+			<p id="roll-result">Roll</p>
+		</div>
+		<div id="take">
+			<p>Which should you take?</p>
+			<input id="roll-input">
+			<button onclick="StartTakeCalculations()">Calculate</button>
+			<p id="take-result"></p>
+		</div>
+		</div>
+	</body>
+	<script src="regenwormen.js"></script>
+</html>
