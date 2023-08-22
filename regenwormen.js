@@ -74,8 +74,8 @@ function worm_value (state) {
 	}
 
 	
-
-	x = state.reduce((a, b) => a + b, 0)
+	new_state = state.map(item => item == 6 ? 5 : item);
+	x = new_state.reduce((a, b) => a + b, 0)
 
 	while (tiles_out.includes(x) || x > 36) {
 		x--;
@@ -83,7 +83,7 @@ function worm_value (state) {
 
 	let base;
 
-
+	
 	if (x < 21) {
 		base = 0
 	} else if (x < 25) {
@@ -95,7 +95,7 @@ function worm_value (state) {
 	} else {
 		base = 4;
 	}
-
+	console.log(state, base);
 	if (tiles_free.includes(x)) {
 		return base;
 	} else if (tiles_enemy.includes(x)) {
@@ -180,7 +180,7 @@ function calculate_roll (start, calculate_take=false, roll=null) {
 						continue
 					} else {
 						let state_after_take = merge_states(state, thr.filter(x => x == take));
-						if (expected_values[state_after_take] > best_worm_value) {
+						if (expected_values[state_after_take] >= best_worm_value) {
 							best_take = take
 							best_worm_value = expected_values[state_after_take]
 						}
